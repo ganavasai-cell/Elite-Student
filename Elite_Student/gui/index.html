@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Student AI</title>
+    <link rel="icon" type="image/x-icon" href="images/Gemini_Generated_Image_cc5ugkcc5ugkcc5u">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <div class="glass-container">
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Elite<br><span>Student</span></h2>
+            <ul class="nav-links">
+                <li class="active" data-tab="tab-chat">
+                    <i data-lucide="message-square"></i>
+                    <span>Chat</span>
+                </li>
+                <li data-tab="tab-essay">
+                    <i data-lucide="pen-tool"></i>
+                    <span>Generate</span>
+                </li>
+                <li data-tab="tab-qa">
+                    <i data-lucide="help-circle"></i>
+                    <span>Tutor</span>
+                </li>
+                <li data-tab="tab-image">
+                    <i data-lucide="image"></i>
+                    <span>Image Lab</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content">
+
+            <!-- Chatbot Tab -->
+            <div id="tab-chat" class="tab-content active">
+                <div class="header">
+                    <h3>AI Chatbot</h3>
+                    <p>Have a conversation with your AI assistant.</p>
+                </div>
+                <div class="chat-container">
+                    <div id="chat-messages" class="messages-area">
+                        <!-- Messages go here -->
+                        <div class="message ai-message">Hello! I am Elite Student. How can I help you today?</div>
+                    </div>
+                    <div class="input-area">
+                        <textarea id="chat-input" placeholder="Type your message..." rows="1"></textarea>
+                        <button id="chat-send">
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Essay Generator Tab -->
+            <div id="tab-essay" class="tab-content">
+                <div class="header">
+                    <h3>Essay & Assignment Generator</h3>
+                    <p>Generate well-written text for your college assignments.</p>
+                </div>
+                <div class="form-container">
+                    <div class="input-group">
+                        <label>Topic / Prompt</label>
+                        <input type="text" id="essay-topic" placeholder="e.g., The impact of AI on modern healthcare">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Length</label>
+                            <select id="essay-length">
+                                <option value="short (approx 300 words)">Short (~300 words)</option>
+                                <option value="medium (approx 600 words)">Medium (~600 words)</option>
+                                <option value="long (approx 1000 words)">Long (~1000 words)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Tone</label>
+                            <select id="essay-tone">
+                                <option value="academic and formal">Academic</option>
+                                <option value="persuasive">Persuasive</option>
+                                <option value="informative and clear">Informative</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="essay-generate" class="primary-btn">Generate Essay</button>
+
+                    <div class="output-area">
+                        <div id="essay-loading" class="loader hidden">Generating... Please wait.</div>
+                        <textarea id="essay-output" readonly
+                            placeholder="Your generated essay will appear here..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q&A Tab -->
+            <div id="tab-qa" class="tab-content">
+                <div class="header">
+                    <h3>Q&A Tutor</h3>
+                    <p>Ask specific questions and get clear, accurate answers.</p>
+                </div>
+                <div class="form-container">
+                    <div class="input-group">
+                        <label>Your Question</label>
+                        <textarea id="qa-input" rows="3"
+                            placeholder="e.g., Explain Quantum Entanglement in simple terms."></textarea>
+                    </div>
+                    <button id="qa-ask" class="primary-btn">Ask Question</button>
+
+                    <div class="output-area">
+                        <div id="qa-loading" class="loader hidden">Thinking...</div>
+                        <div id="qa-output" class="markdown-body">The answer will appear here...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Generator Tab -->
+            <div id="tab-image" class="tab-content">
+                <div class="header">
+                    <h3>Image Lab</h3>
+                    <p>Create diagrams, illustrations, or art for your projects.</p>
+                </div>
+                <div class="form-container">
+                    <div class="input-group">
+                        <label>Image Description</label>
+                        <textarea id="image-prompt" rows="2"
+                            placeholder="e.g., A detailed scientific diagram of a human heart, labeled, high resolution."></textarea>
+                    </div>
+                    <button id="image-generate" class="primary-btn">Generate Art</button>
+
+                    <div class="output-area">
+                        <div id="image-loading" class="loader hidden">Creating masterpiece...</div>
+                        <div id="image-result" class="image-preview-container hidden">
+                            <img id="generated-img" src="" alt="Generated artwork">
+                            <a id="image-download" href="#" target="_blank" class="download-btn">
+                                <i data-lucide="external-link"></i> Open Original
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Required for rendering markdown if necessary, using marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
